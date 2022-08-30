@@ -52,7 +52,7 @@ public class AdminController {
         model.addAttribute("allRoles", rolesService.getAllRoles());
         return "edit-user";
     }
-    @PatchMapping("{id}")
+    @PostMapping("edit/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         userService.updateUser(user);
         return "redirect:/admin";
