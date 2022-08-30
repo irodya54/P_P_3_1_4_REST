@@ -19,4 +19,18 @@ public class RolesDaoImpl implements RolesDao{
         List<Role> rolesList = entityManager.createQuery("from Role", Role.class).getResultList();
         return new HashSet<>(rolesList);
     }
+
+    @Override
+    public Role getRoleByName(String roleName) {
+        return entityManager.createQuery("select r from Role r where r.role = :roleName", Role.class).setParameter("roleName", roleName).getSingleResult();
+    }
+
+    @Override
+    public Set<Role> getRoles(String[] roles) {
+        Set<Role> currentRole = new HashSet<>();
+        for (String role: roles) {
+            currentRole.add(getRoleByName(role));
+        }
+        return currentRole;
+    }
 }

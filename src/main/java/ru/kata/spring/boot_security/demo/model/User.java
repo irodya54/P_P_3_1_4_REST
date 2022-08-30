@@ -28,7 +28,7 @@ public class User implements UserDetails {
 
     @Column(name = "password")
     private String password;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "authorities",
     joinColumns = @JoinColumn(name = "users_id"),
     inverseJoinColumns = @JoinColumn(name = "roles_id"))
@@ -122,7 +122,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return this.roles;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getName();
+        return this.userName;
     }
 
     @Override

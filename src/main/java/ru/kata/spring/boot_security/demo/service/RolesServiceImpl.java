@@ -11,13 +11,21 @@ import java.util.Set;
 
 @Service
 public class RolesServiceImpl implements RolesService{
-    @Autowired
-    private RolesDao rolesDao;
+    private final RolesDao rolesDao;
+
+    public RolesServiceImpl(RolesDao rolesDao) {
+        this.rolesDao = rolesDao;
+    }
 
 
     @Override
     @Transactional
     public Set<Role> getAllRoles() {
         return rolesDao.getAllRoles();
+    }
+
+    @Override
+    public Set<Role> getRoles(String[] roles) {
+        return rolesDao.getRoles(roles);
     }
 }

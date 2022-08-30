@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.dao;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -9,17 +7,25 @@ import ru.kata.spring.boot_security.demo.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+
 @Repository
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
-     private EntityManager entityManager;
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
+    private EntityManager entityManager;
+    private final PasswordEncoder encoder;
+    private final RolesDao rolesDao;
+
+    public UserDaoImpl(PasswordEncoder encoder, RolesDao rolesDao) {
+        this.encoder = encoder;
+        this.rolesDao = rolesDao;
+    }
 
 
     @Override
-    public void addUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public void addUser(User user, String[] role) {
+        user.setRoles(rolesDao.getRoles(role));
+        user.setPassword(encoder.encode(user.getPassword()));
         entityManager.persist(user);
     }
 
@@ -41,7 +47,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateUser(User user) {
+    public void updateUser(User user, String[] roles) {
+        user.setRoles(rolesDao.getRoles(roles));
+        user.setPassword(encoder.encode(user.getPassword()));
         entityManager.merge(user);
     }
 
