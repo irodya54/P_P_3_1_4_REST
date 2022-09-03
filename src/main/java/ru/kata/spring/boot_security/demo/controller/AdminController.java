@@ -1,18 +1,12 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RolesService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/admin")
@@ -27,17 +21,19 @@ public class AdminController {
         this.rolesService = rolesService;
     }
 
-    @GetMapping()
+    @GetMapping("")
     public String getAllUsers(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("currentUser", user);
         model.addAttribute("allUsers", userService.getAllUsers());
-        return "/show-users";
+        return "admin/show-users";
     }
 
     @GetMapping("/addUser")
     public String addUser(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("allRoles", rolesService.getAllRoles());
-        return "add-user";
+        return "admin/add-user";
     }
 
     @PostMapping("/addUser")
@@ -51,7 +47,7 @@ public class AdminController {
     public String returnUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("allRoles", rolesService.getAllRoles());
-        return "edit-user";
+        return "admin/edit-user";
     }
     @PostMapping("edit/{id}")
     public String update(@ModelAttribute("user") User user,
@@ -61,7 +57,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/{id}")
     public String deleteUser(@PathVariable("id") int id, Model model) {
         userService.deleteUser(id);
         return "redirect:/admin";

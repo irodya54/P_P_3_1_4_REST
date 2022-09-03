@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <title>Login Page</title>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+      <h1 class="text-left login-title">Please sign in</h1>
+      <form method="post" action="/login">
+        <div class="form-group">
+          <input type="text" name="j_username" class="form-control" placeholder="User name" required autofocus>
+          <input type="text" name="j_password" class="form-control" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary">Sign in</button>
+      </form>
+    </div>
+  </div>
+</div>

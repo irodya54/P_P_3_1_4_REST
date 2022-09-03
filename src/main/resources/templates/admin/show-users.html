@@ -1,0 +1,92 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<!-- Bootstrap CSS -->
+<head th:insert="fragments/bootstrap::bootstrap">
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+
+
+<body>
+<div class="container-fluid">
+    <!--NAVBAR -->
+    <nav th:replace="fragments/navbar::navbar"></nav>
+
+    <!--ADMIN+USER LEFT FORM-->
+    <div class="row">
+
+        <div th:replace="fragments/panel::panel"></div>
+        <div class="col-10">
+
+            <div th:if="${currentUser.isAdmin()}" class="tab-pane fade show active" id="v-pills-home"
+                 role="tabpanel" aria-labelledby="v-pills-home-tab">
+                <h1>Admin panel</h1>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                           role="tab" aria-controls="nav-home" aria-selected="true">Users table</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                           role="tab" aria-controls="nav-profile" aria-selected="false">New User</a>
+                    </div>
+                </nav>
+                <br/>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                         aria-labelledby="nav-home-tab">
+                        <table class="table table-striped">
+                            <div class="card-header"><h5><b>All users</b></h5></div>
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Surname</th>
+                                <th>Age</th>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+
+                            <!-- <tbody> ниже перестает работать -->
+                            <tbody>
+                            <tr th:each="user : ${allUsers}">
+                                <td th:text="*{user.id}">ID</td>
+                                <td th:text="${user.name}">First Name</td>
+                                <td th:text="${user.surName}">Last Name</td>
+                                <td th:text="${user.age}">Age</td>
+                                <td th:text="${user.userName}">Email</td>
+                                <td th:text="${#strings.listJoin(user.roles,' ')}">Role</td>
+
+                                <td>
+                                    <!-- Button EDIT -->
+                                    <button type="button" class="btn btn-info btn-primary" data-toggle="modal"
+                                            th:data-target="'#edit' + ${user.id}">
+                                        Edit
+                                    </button>
+                                </td>
+                                <td>
+                                    <!-- Button DELETE -->
+                                    <button type="button" class="btn btn-danger btn-primary" data-toggle="modal"
+                                            th:data-target="'#delete' + ${user.id}">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

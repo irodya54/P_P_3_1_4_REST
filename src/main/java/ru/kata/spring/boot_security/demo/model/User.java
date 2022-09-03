@@ -54,10 +54,6 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public void addRoles(Role role) {
-        roles.add(role);
-    }
-
     public Integer getId() {
         return id;
     }
@@ -117,6 +113,19 @@ public class User implements UserDetails {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+    @Transient
+    public boolean isAdmin() {
+        return roles.stream()
+                .map(Role::getRole)
+                .anyMatch(role -> role.equals("ADMIN"));
+    }
+
+    @Transient
+    public boolean isUser() {
+        return roles.stream()
+                .map(Role::getRole)
+                .anyMatch(role -> role.equals("USER"));
     }
 
 
