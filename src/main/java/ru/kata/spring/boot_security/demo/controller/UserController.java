@@ -21,6 +21,7 @@ public class UserController {
 
     @GetMapping("/")
     public String showUser(Model model) {
+        System.out.println(1);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
         return "admin/info-user";
