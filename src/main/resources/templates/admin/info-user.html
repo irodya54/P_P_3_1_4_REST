@@ -12,18 +12,20 @@
 <body>
 
 
-<nav th:replace="/fragments/navbar::navbar"></nav>
+<nav th:replace="fragments/navbar::navbar"></nav>
 <div class="container-fluid h-100">
+    <!--ADMIN+USER LEFT FORM-->
     <div class="row h-100">
 
         <div class="p-0 col-2">
             <div class="nav flex-column nav-pills pt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link" href="/admin" sec:authorize="hasRole('ADMIN')" role="tab"
-                   aria-controls="v-pills-home" aria-selected="true">Admin</a>
-                <a class="nav-link active" href="/user" sec:authorize="hasAnyRole('USER', 'ADMIN')" role="tab"
-                   aria-controls="v-pills-profile" aria-selected="true">User</a>
-            </div>
+            <a class="nav-link" href="/admin" sec:authorize="hasRole('ADMIN')" role="tab"
+               aria-controls="v-pills-home" aria-selected="true">Admin</a>
+            <a class="nav-link active" href="/user" sec:authorize="hasAnyRole('ADMIN','USER')" role="tab"
+               aria-controls="v-pills-profile" aria-selected="false">User</a>
         </div>
+        </div>
+
 
         <div class="p-0 col-10 bg-light">
             <div class="tabs p-4">
