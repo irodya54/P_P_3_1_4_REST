@@ -32,9 +32,11 @@ public class AdminController {
 
     @GetMapping("/addUser")
     public String addUser(Model model) {
-        model.addAttribute("user", new User());
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+        model.addAttribute("newUser", new User());
         model.addAttribute("allRoles", rolesService.getAllRoles());
-        return "admin/add-user";
+        return "admin/create-user";
     }
 
     @PostMapping("/addUser")
