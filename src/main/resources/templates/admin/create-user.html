@@ -61,7 +61,6 @@
                             <div class="card-header"><h5><b>Add new user</b></h5></div>
                             <form th:action="@{/admin/addUser}" th:object="${newUser}" method="POST">
 
-                                <br>
                                 <div class="row">
                                     <div class="text-center">First Name</div>
                                     <input type="text" name="name" th:field="*{name}"
@@ -104,7 +103,7 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <button type="button" class="btn btn-success">Add new User</button>
+                                    <button type="submit" class="btn btn-success">Add new User</button>
                                 </div>
                             </form>
                         </div>

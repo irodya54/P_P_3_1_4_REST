@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/auth")
 public class AuthorizationController {
-    @GetMapping("/login")
+    @GetMapping("/")
+    public String redirect() {
+        return "redirect:auth/login";
+    }
+    @GetMapping("auth/login")
     public String loginPage() {
         return "/auth/login";
     }
