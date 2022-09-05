@@ -48,13 +48,14 @@ public class AdminController {
 
     @GetMapping("/edit/{id}")
     public String returnUser(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("nowUser", userService.getUserById(id));
         model.addAttribute("allRoles", rolesService.getAllRoles());
-        return "admin/edit-user";
+        return "admin/show-users";
     }
     @PostMapping("edit/{id}")
     public String update(@ModelAttribute("user") User user,
-                         @RequestParam("roles") String[] roles) {
+                         @RequestParam("roles") String[] roles,
+                         @PathVariable("id") int id) {
         userService.updateUser(user, roles);
         return "redirect:/admin";
     }
