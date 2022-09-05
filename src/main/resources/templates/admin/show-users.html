@@ -40,7 +40,7 @@
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
                                role="tab" aria-controls="nav-home" aria-selected="true">Users table</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="/admin/addUser"
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="/admin/addUser/"
                                th:method="get"
                                role="tab" aria-controls="nav-profile" aria-selected="false">New User</a>
                         </div>
@@ -74,211 +74,120 @@
                                     <td th:text="${#strings.listJoin(user.roles,' ')}">Role</td>
 
                                     <td>
-                                        <!-- Button EDIT -->
-                                        <button type="button" class="btn btn-info btn-primary" data-toggle="modal"
-                                                th:data-target="'#edit' + ${user.id}">
+                                        <button type="button" class="btn btn-info" data-bs-toggle="modal"
+                                                th:data-bs-target="'#edit' + ${user.id}">
                                             Edit
                                         </button>
 
-                                        <!-- Модальное окно -->
-                                        <div class="modal" th:id="${'edit' + user.id}">
+                                        <div class="modal fade" th:id="${'edit' + user.id}" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <form th:action="@{/admin/edit/{id}(id=${user.id})}"
+                                                    <form th:action="@{/admin/edit/{id}(id=${user.getId()})}"
                                                           th:object="${user}"
                                                           th:method="post">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title">Edit user</h4>
-                                                            <button type="button" class="close"
-                                                                    data-dismiss="modal"></button>
+                                                            <h5 class="modal-title">Edit User</h5>
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Закрыть"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <div class="form-group row justify-content-center text-center">
-                                                                <div class="col-sm-6">
-                                                                    <div class="row">
-                                                                        <div class="text-center">ID</div>
-                                                                        <input type="number" name="id"
-                                                                               th:field="*{id}"
-                                                                               size="5" readonly/>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="text-center">First Name</div>
-                                                                        <input type="text" name="name"
-                                                                               th:field="*{name}" size="5" />
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Surname</div>
-                                                                        <input type="text" name="surname"
-                                                                               th:field="*{surName}"/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Age</div>
-                                                                        <input type="text" name="age" th:field="*{age}"/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Username</div>
-                                                                        <input type="text" name="username"
-                                                                               th:field="*{userName}"/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Password</div>
-                                                                        <input type="password" name="Password"
-                                                                               th:field="*{password}"/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Is Active <input
-                                                                                th:field="*{active}" type="radio"
-                                                                                value="true"/>
+                                                            <div class="modal-body">
+                                                                <div class="form-group row justify-content-center text-center">
+                                                                    <div class="col-sm-6">
+                                                                        <div class="row">
+                                                                            <div class="text-center">ID</div>
+                                                                            <input type="text"
+                                                                                   name="name"
+                                                                                   th:field="*{id}"
+                                                                                   size="2" placeholder="First Name"/>
                                                                         </div>
+                                                                        <br/>
+                                                                        <div class="row">
+                                                                            <div class="text-center">First Name</div>
+                                                                            <input type="text"
+                                                                                   name="name"
+                                                                                   th:field="*{name}"
+                                                                                   size="2" placeholder="First Name"/>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="text-center">Surname</div>
+                                                                            <input type="text" name="surname"
+                                                                                   th:field="*{surName}"
+                                                                                   placeholder="Surname"/>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="text-center">Age</div>
+                                                                            <input type="text" name="age"
+                                                                                   th:field="*{age}"
+                                                                                   placeholder="Age"/>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="text-center">Username</div>
+                                                                            <input type="text" name="username"
+                                                                                   th:field="*{userName}"
+                                                                                   placeholder="Username"/>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="text-center">Password</div>
+                                                                            <input type="password" name="Password"
+                                                                                   th:field="*{password}"
+                                                                                   placeholder="Password"/>
+                                                                        </div>
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="text-center">Is Active <input
+                                                                                    th:field="*{active}" type="radio"
+                                                                                    value="true"/>
+                                                                            </div>
 
-                                                                        <div class="text-center">Not Active <input
-                                                                                th:field="*{active}" type="radio"
-                                                                                value="false"/>
+                                                                            <div class="text-center">Not Active <input
+                                                                                    th:field="*{active}" type="radio"
+                                                                                    value="false"/></div>
                                                                         </div>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Role</div>
-                                                                        <select th:id="roles" multiple
-                                                                                class="input-group-text" size="2"
-                                                                                aria-label="selectRole"
-                                                                                th:field="*{roles}">
-                                                                            <option selected th:each="role: ${allRoles}"
-                                                                                    th:text="${role}"
-                                                                                    th:value="${role}"
-                                                                                    th:field="*{roles}"
-                                                                            ></option>
-                                                                        </select>
+                                                                        <br>
+                                                                        <div class="row">
+                                                                            <div class="text-center">Role</div>
+                                                                            <select th:id="roles" multiple
+                                                                                    class="input-group-text" size="2"
+                                                                                    aria-label="selectRole"
+                                                                                    th:field="*{roles}">
+                                                                                <option selected
+                                                                                        th:each="role: ${allRoles}"
+                                                                                        th:text="${role}"
+                                                                                        th:value="${role}"
+                                                                                        th:field="*{roles}"
+                                                                                ></option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="modal-footer justify-content-end">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">
-                                                                    Close
-                                                                </button>
-                                                                <input type="submit" class="btn btn-danger"
-                                                                       value="Edit"/>
+                                                                <div class="modal-footer justify-content-end">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">
+                                                                        Close
+                                                                    </button>
+                                                                    <input type="submit" class="btn btn-info"
+                                                                           value="Edit"/>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
-
-
 
                                     </td>
                                     <td>
                                         <!-- Button DELETE -->
                                         <button type="button" class="btn btn-danger" data-toggle="modal"
-                                                th:data-target="${'#delete' + user.id}">Delete
+                                                th:data-bs-target="'#delete' + ${user.id}">Delete
                                         </button>
-
-                                        <!-- Модальное окно -->
-                                        <div class="modal" th:id="${'delete' + user.id}">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <form th:action="@{/admin/delete/{id}(id=${user.id})}"
-                                                          th:object="${user}"
-                                                          th:method="get">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Delete user</h4>
-                                                            <button type="button" class="close"
-                                                                    data-dismiss="modal"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group row justify-content-center text-center">
-                                                                <div class="col-sm-6">
-                                                                    <strong><label for="did">ID </label></strong>
-                                                                    <input type="number" class="form-control"
-                                                                           th:value="${user.id}" id="dId" name="id"
-                                                                           readonly>
-                                                                    <br/>
-                                                                    <div class="row">
-                                                                        <div class="text-center">First Name</div>
-                                                                        <input type="text" name="name"
-                                                                               th:field="*{name}"
-                                                                               size="5" placeholder="First Name"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Surname</div>
-                                                                        <input type="text" name="surname"
-                                                                               th:field="*{surName}"
-                                                                               placeholder="Surname"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Age</div>
-                                                                        <input type="text" name="age" th:field="*{age}"
-                                                                               placeholder="Age"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Username</div>
-                                                                        <input type="text" name="username"
-                                                                               th:field="*{userName}"
-                                                                               placeholder="Username"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Password</div>
-                                                                        <input type="password" name="Password"
-                                                                               th:field="*{password}"
-                                                                               placeholder="Password"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Is Active <input
-                                                                                th:field="*{active}" type="radio"
-                                                                                value="true"
-                                                                                readonly/></div>
-
-                                                                        <div class="text-center">Not Active <input
-                                                                                th:field="*{active}" type="radio"
-                                                                                value="false"
-                                                                                readonly/></div>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Role</div>
-                                                                        <select th:id="roles" multiple
-                                                                                class="input-group-text" size="2"
-                                                                                aria-label="selectRole"
-                                                                                th:field="*{roles}">
-                                                                            <option selected th:each="role: ${allRoles}"
-                                                                                    th:text="${role}"
-                                                                                    th:value="${role}"
-                                                                                    th:field="*{roles}"
-                                                                                    readonly></option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer justify-content-end">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">
-                                                                    Close
-                                                                </button>
-                                                                <input type="submit" class="btn btn-danger"
-                                                                       value="Delete"/>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     </td>
                                 </tr>
@@ -291,17 +200,8 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 </body>
 </html>
