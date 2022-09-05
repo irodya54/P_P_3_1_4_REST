@@ -83,17 +83,65 @@
                                     </td>
                                     <td>
                                         <!-- Button DELETE -->
-                                        <button type="button" class="btn btn-danger btn-primary" data-toggle="modal"
-                                                th:data-target="'#delete' + ${user.id}">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="'#delete' + ${user.id}">
                                             Delete
                                         </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form th:method="delete" th:action="@{/admin/edit/{id}(id=${user.getId()})}" th:object="${user}">
+
+                                                            <input id="id" th:field="*{id}" type="hidden">
+
+                                                            <label for="name">Enter Name:</label>
+                                                            <input id="name" th:value="${user.name}" type="text">
+                                                            <br><br>
+                                                            <label for="surname">Enter Surname:</label>
+                                                            <input id="surname" th:field="*{surName}" type="text">
+                                                            <br><br>
+                                                            <label for="age">Enter Age:</label>
+                                                            <input id="age" th:field="*{age}" type="text">
+                                                            <br><br>
+                                                            <label for="username">Enter User Name</label>
+                                                            <input id="username" th:field="*{userName}" type="text">
+                                                            <br><br>
+                                                            <label for="password">Enter Password</label>
+                                                            <input id="password" th:field="*{password}" type="password">
+                                                            <br><br>
+                                                            <label>Is Active:</label>
+                                                            <input th:field="*{active}" type="radio" value="true"/>Yes
+                                                            <input th:field="*{active}" type="radio" value="false"/>No
+                                                            <br><br>
+                                                            <p>
+                                                                <label>Roles:
+                                                                    <input type="checkbox" name="roles"
+                                                                           th:each="role : ${allRoles}"
+                                                                           th:text="${role}"
+                                                                           th:value="${role}"
+                                                                           th:field="*{roles}"
+                                                                    />
+                                                                </label>
+                                                            </p>
+                                                            <br><br>
+                                                            <input type="submit" th:value="Delete">
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-
-
                     </div>
                 </div>
             </div>
