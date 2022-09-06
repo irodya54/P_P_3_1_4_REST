@@ -42,6 +42,7 @@ public class AdminController {
     @PostMapping("/addUser")
     public String saveUser(@ModelAttribute("user") User user,
                            @RequestParam("roles") String[] roles) {
+        System.out.println("1");
             userService.addUser(user, roles);
          return "redirect:/admin";
     }
@@ -50,12 +51,14 @@ public class AdminController {
     public String returnUser(@PathVariable("id") int id, Model model) {
         model.addAttribute("nowUser", userService.getUserById(id));
         model.addAttribute("allRoles", rolesService.getAllRoles());
+        System.out.println(1);
         return "admin/show-users";
     }
     @PostMapping("edit/{id}")
-    public String update(@ModelAttribute("user") User user,
+    public String update(@RequestAttribute("user1") User user,
                          @RequestParam("roles") String[] roles,
                          @PathVariable("id") int id) {
+        System.out.println(1);
         userService.updateUser(user, roles);
         return "redirect:/admin";
     }
