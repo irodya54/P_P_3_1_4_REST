@@ -21,7 +21,7 @@ public class AdminController {
         this.rolesService = rolesService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public String getAllUsers(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
