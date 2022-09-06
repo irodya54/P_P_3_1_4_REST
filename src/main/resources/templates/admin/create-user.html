@@ -15,8 +15,6 @@
             margin: 0 auto;
             padding: 20px;
             width: 300px;
-            font-size: large;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -62,32 +60,32 @@
                             <form th:action="@{/admin/addUser}" th:object="${newUser}" method="POST">
 
                                 <div class="row">
-                                    <div class="text-center">First Name</div>
-                                    <input type="text" name="name" th:field="*{name}"
+                                    <strong class="text-center">Name</strong>
+                                    <input type="text" name="name" class="text-center" th:field="*{name}"
                                            size="5" placeholder="First Name"/>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="text-center">Surname</div>
-                                    <input type="text" name="surname" th:field="*{surName}"
+                                    <strong class="text-center">Surname</strong>
+                                    <input type="text" name="surname" class="text-center" th:field="*{surName}"
                                            placeholder="Surname"/>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="text-center">Age</div>
-                                    <input type="text" name="age" th:field="*{age}"
+                                    <strong class="text-center">Age</strong>
+                                    <input type="text" name="age" class="text-center" th:field="*{age}"
                                            placeholder="Age"/>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="text-center">Username</div>
-                                    <input type="text" name="username" th:field="*{userName}"
+                                    <strong>Username</strong>
+                                    <input type="text" name="username" class="text-center" th:field="*{userName}"
                                            placeholder="Username"/>
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="text-center">Password</div>
-                                    <input type="password" name="Password" th:field="*{password}"
+                                    <strong class="text-center">Password</strong>
+                                    <input type="password" name="Password" class="text-center" th:field="*{password}"
                                            placeholder="Password"/>
                                 </div>
                                 <br>
@@ -98,7 +96,7 @@
                                 </div>
                                 <br>
                                 <div class="row">
-                                    <div class="text-center">Role</div>
+                                    <strong class="text-center">Role</strong>
                                     <select th:id="roles" multiple class="input-group-text" size="2"
                                             aria-label="selectRole" th:field="*{roles}">
                                         <option selected th:each="role: ${allRoles}"
