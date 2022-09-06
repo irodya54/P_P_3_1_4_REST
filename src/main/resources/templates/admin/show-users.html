@@ -93,33 +93,36 @@
                                                                 <div class="form-group row justify-content-center text-center">
                                                                     <div class="col-sm-6">
                                                                         <div class="row">
-                                                                            <div class="text-center">ID</div>
+                                                                            <strong>ID</strong>
                                                                             <input type="text"
-                                                                                   name="name"
+                                                                                   class="text-center"
                                                                                    th:value="${user.id}"
                                                                                    th:name="id"
                                                                                    th:id="id"/>
                                                                         </div>
                                                                         <br/>
                                                                         <div class="row">
-                                                                            <div class="text-center">First Name</div>
+                                                                            <strong>Name</strong>
                                                                             <input type="text"
+                                                                                   class="text-center"
                                                                                    th:value="${user.name}"
                                                                                    th:name="name"
                                                                                    th:id="name"/>
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Surname</div>
+                                                                            <strong>Surname</strong>
                                                                             <input type="text"
+                                                                                   class="text-center"
                                                                                    th:value="${user.surName}"
                                                                                    th:name="surName"
                                                                                    th:id="surName"/>
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Age</div>
+                                                                            <strong>Age</strong>
                                                                             <input type="text"
+                                                                                   class="text-center"
                                                                                    th:value="${user.age}"
                                                                                    th:name="age"
                                                                                    th:id="age"/>
@@ -128,14 +131,16 @@
                                                                         <div class="row">
                                                                             <div class="text-center">Username</div>
                                                                             <input type="text"
+                                                                                   class="text-center"
                                                                                    th:value="${user.userName}"
-                                                                                   th:name="username"
-                                                                                   th:id="username"/>
+                                                                                   th:name="userName"
+                                                                                   th:id="userName"/>
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Password</div>
+                                                                            <strong>Password</strong>
                                                                             <input type="password"
+                                                                                   class="text-center"
                                                                                    th:value="${user.password}"
                                                                                    th:name="password"
                                                                                    th:id="password"/>
@@ -154,7 +159,7 @@
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Role</div>
+                                                                            <strong>Role</strong>
                                                                             <select th:id="roles" multiple
                                                                                     class="input-group-text" size="2"
                                                                                     aria-label="selectRole"
@@ -206,46 +211,49 @@
                                                                 <div class="form-group row justify-content-center text-center">
                                                                     <div class="col-sm-6">
                                                                         <div class="row">
-                                                                            <div class="text-center">ID</div>
+                                                                            <strong>ID</strong>
                                                                             <input type="text"
-                                                                                   name="name"
+                                                                                   class="text-center"
                                                                                    th:value="*{id}"
-                                                                                   placeholder="First Name"
-                                                                            readonly/>
+                                                                                   readonly/>
                                                                         </div>
                                                                         <br/>
                                                                         <div class="row">
-                                                                            <div class="text-center">First Name</div>
+                                                                            <strong>Name</strong>
                                                                             <input type="text"
-                                                                                   name="name"
+                                                                                   class="text-center"
                                                                                    th:value="*{name}"
                                                                                    readonly/>
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Surname</div>
-                                                                            <input type="text" name="surname"
+                                                                            <strong>Surname</strong>
+                                                                            <input type="text"
+                                                                                   class="text-center"
                                                                                    th:value="*{surName}"
                                                                                    readonly/>
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Age</div>
-                                                                            <input type="text" name="age"
+                                                                            <strong>Age</strong>
+                                                                            <input type="text"
+                                                                                   class="text-center"
                                                                                    th:value="*{age}"
                                                                                    readonly/>
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Username</div>
-                                                                            <input type="text" name="username"
+                                                                            <strong>Username</strong>
+                                                                            <input type="text"
+                                                                                   class="text-center"
                                                                                    th:value="*{userName}"
                                                                                    readonly/>
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Password</div>
-                                                                            <input type="password" name="Password"
+                                                                            <strong>Password</strong>
+                                                                            <input type="password"
+                                                                                   class="text-center"
                                                                                    th:value="*{password}"
                                                                                    readonly/>
                                                                         </div>
@@ -264,7 +272,7 @@
                                                                         </div>
                                                                         <br>
                                                                         <div class="row">
-                                                                            <div class="text-center">Role</div>
+                                                                            <strong>Role</strong>
                                                                             <select th:id="roles" multiple
                                                                                     class="input-group-text" size="2"
                                                                                     aria-label="selectRole"
