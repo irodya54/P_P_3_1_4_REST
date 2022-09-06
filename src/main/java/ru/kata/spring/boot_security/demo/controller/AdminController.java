@@ -55,15 +55,13 @@ public class AdminController {
         return "admin/show-users";
     }
     @PostMapping("edit/{id}")
-    public String update(@RequestAttribute("user1") User user,
-                         @RequestParam("roles") String[] roles,
-                         @PathVariable("id") int id) {
-        System.out.println(1);
+    public String update(@ModelAttribute("user") User user,
+                         @RequestParam("roles") String[] roles) {
         userService.updateUser(user, roles);
         return "redirect:/admin";
     }
 
-    @DeleteMapping("delete/{id}")
+    @GetMapping("delete/{id}")
     public String deleteUser(@PathVariable("id") int id, Model model) {
         userService.deleteUser(id);
         return "redirect:/admin";
