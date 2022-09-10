@@ -81,7 +81,7 @@
                                         <div class="modal" th:id="'edit' + ${user.id}">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <form th:method="patch"
+                                                    <form th:method="post"
                                                           th:action="@{/admin/edit/{id}(id=${user.getId()})}"
                                                           th:object="${user}">
                                                         <div class="modal-body">
@@ -271,12 +271,13 @@
                                                                                     readonly/></div>
                                                                         </div>
                                                                         <br>
-                                                                        <div class="row">
+                                                                        <div class="row" >
                                                                             <strong>Role</strong>
                                                                             <select th:id="roles" multiple
                                                                                     class="input-group-text" size="2"
                                                                                     aria-label="selectRole"
-                                                                                    th:value="*{roles}">
+                                                                                    th:value="*{roles}"
+                                                                                    readonly>
                                                                                 <option selected
                                                                                         th:each="role: ${allRoles}"
                                                                                         th:text="${role}"
