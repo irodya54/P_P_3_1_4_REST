@@ -55,6 +55,8 @@
                         </nav>
                         <br/>
                         <div class="tab-content" id="nav-tabContent">
+
+                            <!-------------Вкладка All Users ---------->
                             <div class="tab-pane fade show active" id="userTable" role="tabpanel"
                                  aria-labelledby="nav-home-tab">
                                 <table class="table table-striped">
@@ -80,7 +82,7 @@
                                         <td th:text="${user.age}">Age</td>
                                         <td th:text="${user.userName}">Email</td>
                                         <td th:text="${#strings.listJoin(user.roles,' ')}">Role</td>
-
+                                        <!-- Button EDIT -->
                                         <td>
                                             <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                                     th:data-bs-target="${'#edit' + user.id}">Edit
@@ -326,6 +328,8 @@
                                     </tbody>
                                 </table>
                             </div>
+
+                            <!-------------Вкладка New User ---------->
                             <div class="tab-pane fade show active" id="newUser" role="tabpanel"
                                  aria-labelledby="nav-home-tab">
                                 <div class="card-header"><h5><b>Add new user</b></h5></div>
@@ -388,6 +392,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!----- Вкладка User -------->
                     <div th:if="${user.isUser()}" class="tab-pane fade show active" id="userPage">
                         <div class="p-3 border">
                             <h5 class="my-0 mx-2">User info</h5>
