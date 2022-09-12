@@ -50,18 +50,19 @@ public class AdminRestController {
     @DeleteMapping("/admin/{id}")
     public ResponseEntity<?>  deleteUser (@PathVariable("id") int id) {
         final boolean deleted = userService.deleteUser(id);
+        User user = userService.getUserById(id);
 
         return deleted
-                ? new ResponseEntity<>(HttpStatus.OK)
+                ? new ResponseEntity<>(user, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
     @PutMapping("/admin")
-    public ResponseEntity<?> editUser(@RequestBody User editUser) {
+    public ResponseEntity<User> editUser(@RequestBody User editUser) {
         final boolean edited = userService.updateUser(editUser);
 
         return edited
-                ? new ResponseEntity<>(HttpStatus.OK)
+                ? new ResponseEntity<>(editUser, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 }
