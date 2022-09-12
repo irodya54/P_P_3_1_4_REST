@@ -11,7 +11,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/rest")
 public class AdminRestController {
 
     private final UserService userService;
@@ -23,7 +23,7 @@ public class AdminRestController {
         this.rolesService = rolesService;
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/")
     public ResponseEntity<List<User>> getAllUser () {
         final List<User> clients = userService.getAllUsers();
 
@@ -40,14 +40,14 @@ public class AdminRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/")
     public ResponseEntity<?> addUser(@RequestBody User newUser) {
         System.out.println(1);
         userService.addUser(newUser);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?>  deleteUser (@PathVariable("id") int id) {
         final boolean deleted = userService.deleteUser(id);
         User user = userService.getUserById(id);
@@ -57,7 +57,7 @@ public class AdminRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @PutMapping("/admin")
+    @PutMapping("/")
     public ResponseEntity<User> editUser(@RequestBody User editUser) {
         final boolean edited = userService.updateUser(editUser);
 

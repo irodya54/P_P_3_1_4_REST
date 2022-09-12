@@ -28,26 +28,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**")
-//                .antMatchers("/","/auth/login").permitAll()
-//                .antMatchers("/admin/**").hasAuthority("ADMIN")
-//                .antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/auth/login")
-//                .loginProcessingUrl("/auth/login")
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .successHandler(successUserHandler)
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutSuccessUrl("/auth/login")
+                .antMatchers("/","/auth/login").permitAll()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**").hasAnyAuthority("ADMIN", "USER")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/auth/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .successHandler(successUserHandler)
+                .permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/auth/login")
                 .permitAll();
     }
-
-    // аутентификация inMemory
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {

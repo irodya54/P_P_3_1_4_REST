@@ -9,7 +9,7 @@ import ru.kata.spring.boot_security.demo.service.RolesService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Controller
-//@RequestMapping("/admin")
+@RequestMapping("/admin")
 public class AdminController {
 
     private final UserService userService;
@@ -21,15 +21,15 @@ public class AdminController {
         this.rolesService = rolesService;
     }
 
-//    @GetMapping
-//    public String getAllUsers(Model model) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("user", user);
-//        model.addAttribute("allUsers", userService.getAllUsers());
-//        model.addAttribute("allRoles", rolesService.getAllRoles());
-//        System.out.println(1);
-//        return "admin/show-users";
-//    }
+    @GetMapping
+    public String getAllUsers(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("user", user);
+        model.addAttribute("allUsers", userService.getAllUsers());
+        model.addAttribute("allRoles", rolesService.getAllRoles());
+        System.out.println(1);
+        return "admin/show-users";
+    }
 //
 //    @GetMapping("/addUser")
 //    public String addUser(Model model) {
