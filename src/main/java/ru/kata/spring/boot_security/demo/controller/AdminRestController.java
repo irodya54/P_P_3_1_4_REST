@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
@@ -25,16 +26,16 @@ public class AdminRestController {
 
     @GetMapping("/")
     public ResponseEntity<List<User>> getAllUser () {
-        final List<User> clients = userService.getAllUsers();
+        final List<User> users = userService.getAllUsers();
 
-        return clients != null &&  !clients.isEmpty()
-                ? new ResponseEntity<>(clients, HttpStatus.OK)
+        return users != null &&  !users.isEmpty()
+                ? new ResponseEntity<>(users, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") int id, Model model) {
-        final User user = userService.getUserById(id);
+    @GetMapping("/user}")
+    public ResponseEntity<User> getUser( Model model) {
+        final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return user != null
                 ? new ResponseEntity<>(user, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -65,4 +66,6 @@ public class AdminRestController {
                 ? new ResponseEntity<>(editUser, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
+
+
 }
