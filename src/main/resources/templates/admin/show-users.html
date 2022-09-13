@@ -333,62 +333,60 @@
                             <div class="tab-pane fade show" id="newUser" role="tabpanel"
                                  aria-labelledby="nav-home-tab">
                                 <div class="card-header"><h5><b>Add new user</b></h5></div>
-<!--                                <form th:action="@{/admin/addUser}" th:object="${newUser}" method="POST">-->
+                                <form id="formNewUser">
 
-<!--                                    <div class="row">-->
-<!--                                        <strong class="text-center">Name</strong>-->
-<!--                                        <input type="text" name="name" class="text-center" th:field="*{name}"-->
-<!--                                               size="5" placeholder="First Name"/>-->
-<!--                                    </div>-->
-<!--                                    <br>-->
-<!--                                    <div class="row">-->
-<!--                                        <strong class="text-center">Surname</strong>-->
-<!--                                        <input type="text" name="surname" class="text-center" th:field="*{surName}"-->
-<!--                                               placeholder="Surname"/>-->
-<!--                                    </div>-->
-<!--                                    <br>-->
-<!--                                    <div class="row">-->
-<!--                                        <strong class="text-center">Age</strong>-->
-<!--                                        <input type="text" name="age" class="text-center" th:field="*{age}"-->
-<!--                                               placeholder="Age"/>-->
-<!--                                    </div>-->
-<!--                                    <br>-->
-<!--                                    <div class="row">-->
-<!--                                        <strong class="text-center">Username</strong>-->
-<!--                                        <input type="text" name="username" class="text-center" th:field="*{userName}"-->
-<!--                                               placeholder="Username"/>-->
-<!--                                    </div>-->
-<!--                                    <br>-->
-<!--                                    <div class="row">-->
-<!--                                        <strong class="text-center">Password</strong>-->
-<!--                                        <input type="password" name="Password" class="text-center"-->
-<!--                                               th:field="*{password}"-->
-<!--                                               placeholder="Password"/>-->
-<!--                                    </div>-->
-<!--                                    <br>-->
-<!--                                    <div class="row">-->
-<!--                                        <div class="text-center">Is Active <input th:field="*{active}" type="radio"-->
-<!--                                                                                  value="true"/></div>-->
+                                    <div class="row">
+                                        <strong class="text-center">Name</strong>
+                                        <input type="text" name="name" class="text-center"
+                                               size="5" placeholder="First Name"/>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <strong class="text-center">Surname</strong>
+                                        <input type="text" name="surname" class="text-center"
+                                               placeholder="Surname"/>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <strong class="text-center">Age</strong>
+                                        <input type="text" name="age" class="text-center"
+                                               placeholder="Age"/>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <strong class="text-center">Username</strong>
+                                        <input type="text" name="username" class="text-center"
+                                               placeholder="Username"/>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <strong class="text-center">Password</strong>
+                                        <input type="password" name="Password" class="text-center"
+                                               placeholder="Password"/>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="text-center">Is Active <input type="radio"
+                                                                                  value="true"/></div>
 
-<!--                                        <div class="text-center">Not Active <input th:field="*{active}" type="radio"-->
-<!--                                                                                   value="false"/></div>-->
-<!--                                    </div>-->
-<!--                                    <br>-->
-<!--                                    <div class="row">-->
-<!--                                        <strong class="text-center">Role</strong>-->
-<!--                                        <select th:id="roles" multiple class="input-group-text" size="2"-->
-<!--                                                aria-label="selectRole" th:field="*{roles}">-->
-<!--                                            <option selected th:each="role: ${allRoles}"-->
-<!--                                                    th:text="${role}"-->
-<!--                                                    th:value="${role}"-->
-<!--                                                    th:field="*{roles}"></option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
-<!--                                    <br>-->
-<!--                                    <div class="row">-->
-<!--                                        <button type="submit" class="btn btn-success">Add new User</button>-->
-<!--                                    </div>-->
-<!--                                </form>-->
+                                        <div class="text-center">Not Active <input type="radio"
+                                                                                   value="false"/></div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <strong class="text-center">Role</strong>
+                                        <select th:id="roles" multiple class="input-group-text" size="2"
+                                                aria-label="selectRole">
+                                            <option selected th:each="role: ${allRoles}"
+                                                    th:text="${role}"
+                                                    th:value="${role}"></option>
+                                        </select>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <button type="submit" class="btn btn-success">Add new User</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
