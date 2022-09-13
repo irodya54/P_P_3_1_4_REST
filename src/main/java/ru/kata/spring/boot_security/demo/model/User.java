@@ -32,7 +32,7 @@ public class User implements UserDetails {
     @JoinTable(name = "authorities",
     joinColumns = @JoinColumn(name = "users_id"),
     inverseJoinColumns = @JoinColumn(name = "roles_id"))
-    private Set<Role> roles;
+    private List<Role> roles;
 
     public User() {
     }
@@ -43,7 +43,7 @@ public class User implements UserDetails {
                 boolean isActive,
                 String userName,
                 String password,
-                Set<Role> roles) {
+                List<Role> roles) {
         this.id = id;
         this.name = name;
         this.surName = surName;
@@ -103,11 +103,11 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 

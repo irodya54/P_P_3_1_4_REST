@@ -1,8 +1,8 @@
-
 // Заполнение страницы All users
 
 $(async function () {
-    await getAllUsers()
+    await getAllUsers();
+    showCurrentUser();
 });
 
 const allUsersTable = $('#tableAllUsers');
@@ -35,10 +35,6 @@ async function getAllUsers() {
         })
 }
 
-// Заполнение страницы User
-$(async function () {
-    await showCurrentUser()
-});
 
 const currentUserTable = $('#currentUserTable');
 
@@ -47,7 +43,7 @@ async function showCurrentUser() {
     fetch("http://localhost:8080/rest/user")
         .then(res => res.json())
         .then(user => {
-                let data = `$(
+            let data = `$(
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.name}</td>
@@ -56,27 +52,56 @@ async function showCurrentUser() {
                             <td>${user.username}</td>
                             <td>${user.roles.map(role => " " + role.role)}</td>
                         </tr>)`;
-                $('#currentUserTable').append(data)
-            })
+            $('#currentUserTable').append(data)
+        })
 }
 
 // Создание нового пользователя
-// const url = 'http://localhost:8080/rest/';
-// const data = { username: 'example' };
-//
-// try {
-//     const response = await fetch(url, {
-//         method: 'POST', // или 'PUT'
-//         body: JSON.stringify(data), // данные могут быть 'строкой' или {объектом}!
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     });
-//     const json = await response.json();
-//     console.log('Успех:', JSON.stringify(json));
-// } catch (error) {
-//     console.error('Ошибка:', error);
-// }
+const formForNewUser = document.getElementById("formNewUser")
+formForNewUser.addEventListener('submit', getFormValue);
+
+async function getFormValue(event) {
+    event.preventDefault();
+
+    //вытаскиваем роли из формы
+    const userFormAuthorities = formForNewUser.querySelector('#roles')
+    const currentRoles = userFormAuthorities.selectedOptions
+    let newUserRoles = [];
+
+    for (let i = 0; i < currentRoles.length; i++) {
+        console.log(i)
+        newUserRoles.push({
+            id: currentRoles.item(i).value,
+            name: currentRoles.item(i).text
+        })
+    }
+
+    // Отправляем запрос
+    fetch("http://localhost:8080/rest/", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: formForNewUser.name.value,
+            surName: formForNewUser.surName.value,
+            age: formForNewUser.age.value,
+            userName: formForNewUser.userName.value,
+            password: formForNewUser.password.value,
+            active: formForNewUser.isActive.value,
+            roles: newUserRoles
+        })
+    })
+        .then(() => {
+            formForNewUser.reset();
+            getAllUsers();
+            $('#allUsers-tab').click();
+        })
+
+}
+
+
+// МОДАЛИ
 
 
 
