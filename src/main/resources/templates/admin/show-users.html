@@ -394,7 +394,7 @@
                     </div>
 
                     <!--- Вкладка User ------>
-                    <div th:if="${user.isUser()}" class="tab-pane fade show" id="userPanel">
+                    <div th:if="${user.isUser() or user.isAdmin()}" class="tab-pane fade show" id="userPanel">
                         <div class="p-3 border">
                             <h5 class="my-0 mx-2">User info</h5>
                         </div>
