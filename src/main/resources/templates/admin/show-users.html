@@ -74,7 +74,7 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody id="tbodyAllUserTable">
+                                    <tbody  id="tableAllUsers">
 <!--                                    <tr th:each="user : ${allUsers}">-->
 <!--                                        <td th:text="*{user.id}">ID</td>-->
 <!--                                        <td th:text="${user.name}">First Name</td>-->
@@ -410,19 +410,8 @@
                                     <th>Role</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td th:text="${user.id}"></td>
-                                    <td th:text="${user.name}"></td>
-                                    <td th:text="${user.surName}"></td>
-                                    <td th:text="${user.age}"></td>
-                                    <td th:text="${user.userName}"></td>
-                                    <td>
-                                        <th:block th:each="role: ${user.roles}"
-                                                  th:text="${role.role} + ' '">
-                                        </th:block>
-                                    </td>
-                                </tr>
+                                <tbody id="currentUserTable">
+
                                 </tbody>
                             </table>
                         </div>

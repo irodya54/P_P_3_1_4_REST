@@ -27,7 +27,6 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("allUsers", userService.getAllUsers());
         model.addAttribute("allRoles", rolesService.getAllRoles());
-        System.out.println(1);
         return "admin/show-users";
     }
 //

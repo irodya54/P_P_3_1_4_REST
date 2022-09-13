@@ -1,11 +1,14 @@
-$(async function () {
-    await allUsers();
-    await userTable()
-});
-const tableAllUsers = $('#tbodyAllUserTable');
 
-async function allUsers() {
-    tableAllUsers.empty()
+// Заполнение страницы All users
+
+$(async function () {
+    await getAllUsers()
+});
+
+const allUsersTable = $('#tableAllUsers');
+
+async function getAllUsers() {
+    allUsersTable.empty()
     fetch("http://localhost:8080/rest/")
         .then(res => res.json())
         .then(data => {
@@ -14,8 +17,8 @@ async function allUsers() {
                         <tr>
                             <td>${user.id}</td>
                             <td>${user.name}</td>
-                            <td>${user.surName}</td>      
-                            <td>${user.age}</td>                                         
+                            <td>${user.surName}</td>
+                            <td>${user.age}</td>
                             <td>${user.username}</td>
                             <td>${user.roles.map(role => " " + role.role)}</td>
                             <td>
@@ -27,19 +30,36 @@ async function allUsers() {
                                 data-action="delete" data-id="${user.id}" data-target="#delete">Delete</button>
                             </td>
                         </tr>)`;
-                table.append(tableWithUsers);
+                allUsersTable.append(tableWithUsers);
             })
         })
 }
 
-let tableCurrentUser = $('#tbodyCurrentUser');
-async function userTable() {
-    tableCurrentUser.empty()
-    fetch("http://localhost:8080/rest/user/")
+// Заполнение страницы User
+$(async function () {
+    await showCurrentUser()
+});
+
+const currentUserTable = $('#currentUserTable');
+
+async function showCurrentUser() {
+    currentUserTable.empty()
+    fetch("http://localhost:8080/rest/user")
         .then(res => res.json())
-        .then(data => {
-            data.valueOf(
-                let tableUser =
-            )
-        })
+        .then(user => {
+                let data = `$(
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.name}</td>
+                            <td>${user.surName}</td>
+                            <td>${user.age}</td>
+                            <td>${user.username}</td>
+                            <td>${user.roles.map(role => " " + role.role)}</td>
+                        </tr>)`;
+                $('#currentUserTable').append(data)
+            })
+
 }
+
+
+

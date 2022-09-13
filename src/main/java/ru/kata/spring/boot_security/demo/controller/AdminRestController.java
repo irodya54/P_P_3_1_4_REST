@@ -2,6 +2,7 @@ package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RolesService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -33,17 +35,24 @@ public class AdminRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/user}")
-    public ResponseEntity<User> getUser( Model model) {
-        final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return user != null
-                ? new ResponseEntity<>(user, HttpStatus.OK)
+    @GetMapping("/user")
+    public ResponseEntity<User> getCurrentUser(Authentication auth) {
+        final User currentUser = (User) auth.getPrincipal();
+        return currentUser != null
+                ? new ResponseEntity<>(currentUser, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
+        final User userById = userService.getUserById(id);
+        return userById != null
+                ? new ResponseEntity<>(userById, HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/")
     public ResponseEntity<?> addUser(@RequestBody User newUser) {
-        System.out.println(1);
         userService.addUser(newUser);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
