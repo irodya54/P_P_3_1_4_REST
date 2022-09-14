@@ -22,14 +22,15 @@ async function getAllUsers() {
                             <td>${user.username}</td>
                             <td>${user.roles.map(role => " " + role.role)}</td>
                             <td>
-                                <button type="button" class="btn btn-info" data-toggle="modal" id="buttonEdit"
-                                data-action="edit" data-id="${user.id}" data-target="#edit">Edit</button>
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal" id="buttonEdit"
+                                data-action="edit" data-bs-userid="${user.id}" data-bs-target="#modalEdit">Edit</button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" id="buttonDelete"
-                                data-action="delete" data-id="${user.id}" data-target="#delete">Delete</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="buttonDelete"
+                                 data-action="delete" data-userid="${user.id}" data-bs-target="#modalDelete">Delete</button>
                             </td>
                         </tr>)`;
+
                 allUsersTable.append(tableWithUsers);
             })
         })
@@ -99,9 +100,5 @@ async function getFormValue(event) {
         })
 
 }
-
-
-// МОДАЛИ
-
 
 
