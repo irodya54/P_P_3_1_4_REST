@@ -121,7 +121,7 @@ $('#modalEdit').on('shown.bs.modal', function (event) {
             form.password.value = user.password
             form.userName.value = user.userName
             form.isActive.value = user.active
-            form.rolesEdit.value = user.roles
+            form.rolesEdit.value = user.roles.id
             console.log(user)
         })
 

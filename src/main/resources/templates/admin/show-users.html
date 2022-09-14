@@ -161,15 +161,13 @@
                                                                 <br>
                                                                 <div class="row">
                                                                     <strong>Role</strong>
-                                                                    <select multiple name="rolesEdit"
-                                                                            id="editRoles"
+                                                                    <select th:id="editRoles" multiple
                                                                             class="input-group-text" size="2"
-                                                                            aria-label="selectRole">
-                                                                        <option selected
-                                                                                th:each="role: ${allRoles}"
+                                                                            aria-label="selectRole" name="rolesEdit"
+                                                                            required>
+                                                                        <option selected th:each="role: ${allRoles}"
                                                                                 th:text="${role.role}"
-                                                                                th:value="${role.id}"
-                                                                        ></option>
+                                                                                th:value="${role.id}"></option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -307,31 +305,31 @@
                                     <div class="row">
                                         <strong class="text-center">Name</strong>
                                         <input type="text" name="name" value="" class="text-center"
-                                               size="5" placeholder="First Name"/>
+                                               size="5" placeholder="First Name" required/>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <strong class="text-center">Surname</strong>
                                         <input type="text" name="surName" value="" class="text-center"
-                                               placeholder="Surname"/>
+                                               placeholder="Surname" required/>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <strong class="text-center">Age</strong>
                                         <input type="text" name="age" value="" class="text-center"
-                                               placeholder="Age"/>
+                                               placeholder="Age" required/>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <strong class="text-center">Username</strong>
                                         <input type="text" name="userName" value="" class="text-center"
-                                               placeholder="Username"/>
+                                               placeholder="Username" required/>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <strong class="text-center">Password</strong>
                                         <input type="password" name="password" value="" class="text-center"
-                                               placeholder="Password"/>
+                                               placeholder="Password" required/>
                                     </div>
                                     <br>
                                     <div class="row">
@@ -347,8 +345,8 @@
                                     <br>
                                     <div class="row">
                                         <strong class="text-center">Role</strong>
-                                        <select th:id="roles" multiple class="input-group-text" size="2">
-                                            aria-label="selectRole" name="roles">
+                                        <select th:id="roles" multiple class="input-group-text" size="2"
+                                                aria-label="selectRole" name="roles" required>
                                             <option selected th:each="role: ${allRoles}"
                                                     th:text="${role.role}"
                                                     th:value="${role.id}"></option>
