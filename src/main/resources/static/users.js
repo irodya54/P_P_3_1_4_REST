@@ -23,11 +23,11 @@ async function getAllUsers() {
                             <td>${user.roles.map(role => " " + role.role)}</td>
                             <td>
                                 <button type="button" class="btn btn-info" data-bs-toggle="modal" id="buttonEdit"
-                                data-action="edit" data-bs-userid="${user.id}" data-bs-target="#modalEdit">Edit</button>
+                                data-action="edit" data-bs-id="${user.id}" data-bs-target="#modalEdit">Edit</button>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="buttonDelete"
-                                 data-action="delete" data-userid="${user.id}" data-bs-target="#modalDelete">Delete</button>
+                                 data-action="delete" data-id="${user.id}" data-bs-target="#modalDelete">Delete</button>
                             </td>
                         </tr>)`;
 
@@ -101,4 +101,30 @@ async function getFormValue(event) {
 
 }
 
+// модали
+async function getUser(id) {
+    let url = "http://localhost:8080/rest/" + id;
+    let response = await fetch(url);
+    return await response.json();
+}
+
+$('#modalEdit').on('show.bs.modal', function (event) {
+    let userEditID = event.relatedTarget.getAttribute('data-bs-id')
+    let form = document.querySelector('#formEdit')
+    console.log(form)
+        getUser(userEditID)
+            .then(user => {
+                console.log(user)
+        form.idEdit.value = user.id
+        form.name.value = user.name
+        form.surName.value = user.surName
+        form.age.value = user.age
+        form.password.value = user.password
+        form.userName.value = user.userName
+        form.isActive.value = user.active
+                console.log(user.active)
+        form.roles.value = user.roles})
+
+
+})
 

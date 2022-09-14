@@ -45,6 +45,7 @@ public class AdminRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") int id) {
+        System.out.println(1);
         final User userById = userService.getUserById(id);
         return userById != null
                 ? new ResponseEntity<>(userById, HttpStatus.OK)
