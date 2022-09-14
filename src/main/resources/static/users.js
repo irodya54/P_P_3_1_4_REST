@@ -109,7 +109,7 @@ async function getUser(id) {
 }
 
 $('#modalEdit').on('shown.bs.modal', function (event) {
-    // event.preventDefault()
+    event.preventDefault()
     let userEditID = event.relatedTarget.getAttribute('data-bs-id')
     let form = document.querySelector('#formEdit')
     let user = getUser(userEditID)
@@ -121,7 +121,8 @@ $('#modalEdit').on('shown.bs.modal', function (event) {
             form.password.value = user.password
             form.userName.value = user.userName
             form.isActive.value = user.active
-            form.roles.value = user.roles
+            form.rolesEdit.value = user.roles
+            console.log(user)
         })
 
 
@@ -159,9 +160,19 @@ $('#modalEdit').on('shown.bs.modal', function (event) {
         })
             .then(() => {
                 getAllUsers();
-                $('#modalEdit').modal().hide();
-                })
+                $('#modalEdit').hide();
+            })
     })
 })
 
+$('#modalDelete').on('shown.bs.modal', function (ev) {
+    ev.preventDefault()
+
+    $('#deleteForm').on('submit', function (ev) {
+        ev.preventDefault()
+        $('#modalDelete').hide()
+
+    })
+
+})
 

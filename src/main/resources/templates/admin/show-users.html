@@ -161,13 +161,13 @@
                                                                 <br>
                                                                 <div class="row">
                                                                     <strong>Role</strong>
-                                                                    <select multiple name="roles"
+                                                                    <select multiple name="rolesEdit"
                                                                             id="editRoles"
                                                                             class="input-group-text" size="2"
                                                                             aria-label="selectRole">
                                                                         <option selected
                                                                                 th:each="role: ${allRoles}"
-                                                                                th:text="${role}"
+                                                                                th:text="${role.role}"
                                                                                 th:value="${role.id}"
                                                                         ></option>
                                                                     </select>
