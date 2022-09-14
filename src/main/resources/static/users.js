@@ -108,23 +108,60 @@ async function getUser(id) {
     return await response.json();
 }
 
-$('#modalEdit').on('show.bs.modal', function (event) {
+$('#modalEdit').on('shown.bs.modal', function (event) {
+    // event.preventDefault()
     let userEditID = event.relatedTarget.getAttribute('data-bs-id')
     let form = document.querySelector('#formEdit')
-    console.log(form)
-        getUser(userEditID)
-            .then(user => {
-                console.log(user)
-        form.idEdit.value = user.id
-        form.name.value = user.name
-        form.surName.value = user.surName
-        form.age.value = user.age
-        form.password.value = user.password
-        form.userName.value = user.userName
-        form.isActive.value = user.active
-                console.log(user.active)
-        form.roles.value = user.roles})
+    let user = getUser(userEditID)
+        .then(user => {
+            form.idEdit.value = user.id
+            form.name.value = user.name
+            form.surName.value = user.surName
+            form.age.value = user.age
+            form.password.value = user.password
+            form.userName.value = user.userName
+            form.isActive.value = user.active
+            form.roles.value = user.roles
+        })
 
 
+    form.addEventListener('submit', function (ev) {
+        ev.preventDefault()
+        const userFormEditRole = document.querySelector('#editRoles')
+        console.log(userFormEditRole)
+        const currentRoles = userFormEditRole.selectedOptions
+        let editRoles = [];
+
+        for (let i = 0; i < currentRoles.length; i++) {
+            console.log(i)
+            editRoles.push({
+                id: currentRoles.item(i).value,
+                name: currentRoles.item(i).text
+            })
+            console.log(editRoles)
+        }
+        fetch("http://localhost:8080/rest/", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: form.idEdit.value,
+                name: form.name.value,
+                surName: form.surName.value,
+                age: form.age.value,
+                userName: form.userName.value,
+                password: form.password.value,
+                active: form.isActive.value,
+                roles: editRoles
+
+            })
+        })
+            .then(() => {
+                getAllUsers();
+                $('#modalEdit').modal().hide();
+                })
+    })
 })
+
 

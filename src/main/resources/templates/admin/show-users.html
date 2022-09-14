@@ -31,7 +31,7 @@
             <div class="nav flex-column nav-pills pt-4" id="admin-tab" role="tablist" aria-orientation="vertical">
                 <button class="nav-link" id="v-pills-usersTable-tab" data-bs-toggle="pill"
                         data-bs-target="#adminPanel" type="button" role="tab" aria-controls="v-pills-usersTable"
-                        aria-selected="true">Admin
+                        sec:authorize="hasAuthority('ADMIN')" aria-selected="true">Admin
                 </button>
                 <button class="nav-link  active" id="user-tab" data-bs-toggle="pill"
                         data-bs-target="#userPanel" type="button" role="tab" aria-controls="v-pills-newUser"
@@ -88,7 +88,6 @@
                                     <div class="modal" id="modalEdit">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-
                                                 <div class="modal-header">
                                                     <h4 class="modal-title">Edit user</h4>
                                                 </div>
@@ -163,6 +162,7 @@
                                                                 <div class="row">
                                                                     <strong>Role</strong>
                                                                     <select multiple name="roles"
+                                                                            id="editRoles"
                                                                             class="input-group-text" size="2"
                                                                             aria-label="selectRole">
                                                                         <option selected

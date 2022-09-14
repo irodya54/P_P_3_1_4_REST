@@ -42,8 +42,7 @@ public class User implements UserDetails {
                 int age,
                 boolean isActive,
                 String userName,
-                String password,
-                List<Role> roles) {
+                String password) {
         this.id = id;
         this.name = name;
         this.surName = surName;
@@ -51,7 +50,6 @@ public class User implements UserDetails {
         this.isActive = isActive;
         this.userName = userName;
         this.password = password;
-        this.roles = roles;
     }
 
     public Integer getId() {

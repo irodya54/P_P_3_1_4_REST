@@ -31,6 +31,17 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public boolean updateUser(User user) {
+        if (getUserById(user.getId()) != null) {
+            user.setPassword(encoder.encode(user.getPassword()));
+            entityManager.merge(user);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return entityManager.createQuery("from User", User.class).getResultList();
     }
@@ -47,15 +58,7 @@ public class UserDaoImpl implements UserDao {
         return entityManager.find(User.class, id);
     }
 
-    @Override
-    public boolean updateUser(User user) {
-        if (getUserById(user.getId()) != null) {
-            user.setPassword(encoder.encode(user.getPassword()));
-            entityManager.merge(user);
-            return true;
-        }
-        return false;
-    }
+
 
     @Override
     public boolean deleteUser(int id) {
