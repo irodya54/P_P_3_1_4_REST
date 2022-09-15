@@ -11,8 +11,8 @@ async function getAllUsers() {
     allUsersTable.empty()
     fetch("http://localhost:8080/rest/")
         .then(res => res.json())
-        .then(data => {
-            data.forEach(user => {
+        .then(res => {
+            res.forEach(user => {
                 let tableWithUsers = `$(
                         <tr>
                             <td>${user.id}</td>
@@ -114,7 +114,6 @@ $('#modalEdit').on('show.bs.modal', function (event) {
     let form = document.querySelector('#formEdit')
     form.reset()
     let selectRole = document.getElementById('editRoles')
-    console.log(selectRole)
     let user = getUser(userEditID)
         .then(user => {
             form.idEdit.value = user.id
@@ -132,13 +131,12 @@ $('#modalEdit').on('show.bs.modal', function (event) {
                     }
                 }
             }
-        })
+        }).catch(() => console.error('что то пошло не так'))
 
 
     form.addEventListener('submit', function (ev) {
         ev.preventDefault()
         const userFormEditRole = document.querySelector('#editRoles')
-        console.log(userFormEditRole)
         const currentRoles = userFormEditRole.selectedOptions
         let editRoles = [];
 
@@ -166,11 +164,9 @@ $('#modalEdit').on('show.bs.modal', function (event) {
             })
 
         }).then(() => {
-                $('#modalEdit').hide()
-                getAllUsers()
-            }
-        ).catch(() => {
-            $('#modalEdit').hide()
+            allUsersTable.empty()
+            $("#modalEdit").modal("hide")
+            getAllUsers()
         })
     })
 })
