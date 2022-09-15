@@ -8,10 +8,11 @@ $(async function () {
 const allUsersTable = $('#tableAllUsers');
 
 async function getAllUsers() {
-    allUsersTable.empty()
+
     fetch("http://localhost:8080/rest/")
         .then(res => res.json())
         .then(res => {
+            allUsersTable.empty()
             res.forEach(user => {
                 let tableWithUsers = `$(
                         <tr>
@@ -27,7 +28,7 @@ async function getAllUsers() {
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="buttonDelete"
-                                 data-action="delete" data-id="${user.id}" data-bs-target="#modalDelete">Delete</button>
+                                 data-action="delete" data-bs-id="${user.id}" data-bs-target="#modalDelete">Delete</button>
                             </td>
                         </tr>)`;
 
@@ -109,17 +110,10 @@ async function getUser(id) {
     let response = await fetch(url);
     return await response.json();
 }
-// ИЗменение пользователя
-$('#modalEdit').on('show.bs.modal', function (event) {
-
-    let userEditID = event.relatedTarget.getAttribute('data-bs-id')
-    let form = document.querySelector('#formEdit')
-    form.reset()
-    let selectRole = document.getElementById('editRoles')
-        // Заполнение формы
-    let user = getUser(userEditID)
+function extracted(id, form, selectRole) {
+    let user = getUser(id)
         .then(user => {
-            form.idEdit.value = user.id
+            form.id.value = user.id
             form.name.value = user.name
             form.surName.value = user.surName
             form.age.value = user.age
@@ -135,6 +129,17 @@ $('#modalEdit').on('show.bs.modal', function (event) {
                 }
             }
         })
+}
+
+// ИЗменение пользователя
+$('#modalEdit').on('show.bs.modal', function (event) {
+
+    let userEditID = event.relatedTarget.getAttribute('data-bs-id')
+    let form = document.querySelector('#formEdit')
+    form.reset()
+    let selectRole = document.getElementById('editRoles')
+        // Заполнение формы
+    extracted(userEditID, form, selectRole)
 
         // Отправка формы
     form.addEventListener('submit', function (ev) {
@@ -157,7 +162,7 @@ $('#modalEdit').on('show.bs.modal', function (event) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                id: form.idEdit.value,
+                id: form.id.value,
                 name: form.name.value,
                 surName: form.surName.value,
                 age: form.age.value,
@@ -170,6 +175,48 @@ $('#modalEdit').on('show.bs.modal', function (event) {
 
         }).then(() => {
             $("#modalEdit").modal("hide")
+            getAllUsers()
+        })
+    })
+})
+
+
+// Удаление пользователя
+$('#modalDelete').on('show.bs.modal', function (event) {
+
+    let userDeleteID = event.relatedTarget.getAttribute('data-bs-id')
+    let form = document.querySelector('#deleteForm')
+    form.reset()
+    let selectRole = document.getElementById('deleteRoles')
+    // Заполнение формы
+    extracted(userDeleteID, form, selectRole);
+
+    // Отправка формы
+    form.addEventListener('submit', function (ev) {
+        ev.preventDefault()
+        // Считывание ролей
+        const userFormEditRole = document.querySelector('#deleteRoles')
+        const currentRoles = userFormEditRole.selectedOptions
+        let deleteRoles = [];
+
+        for (let i = 0; i < currentRoles.length; i++) {
+            deleteRoles.push({
+                id: currentRoles.item(i).value,
+                name: currentRoles.item(i).text
+            })
+        }
+        // Отправка запросса на изменение
+        fetch("http://localhost:8080/rest/"+userDeleteID, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: form.id.value
+            })
+
+        }).then(() => {
+            $("#modalDelete").modal("hide")
             getAllUsers()
         })
     })

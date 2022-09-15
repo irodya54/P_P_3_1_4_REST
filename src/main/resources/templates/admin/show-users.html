@@ -85,215 +85,7 @@
                                     </thead>
 
                                     <tbody id="tableAllUsers">
-                                    <!---------- Модаль Edit-------------->
-                                    <div class="modal" id="modalEdit">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title">Edit user</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form id="formEdit">
-                                                        <div class="form-group row justify-content-center text-center">
-                                                            <div class="col-sm-6">
-                                                                <div class="row">
-                                                                    <strong>ID</strong>
-                                                                    <input type="text"
-                                                                           class="text-center"
-                                                                           name="idEdit"
-                                                                           id="editID"/>
-                                                                </div>
-                                                                <br/>
-                                                                <div class="row">
-                                                                    <strong>Name</strong>
-                                                                    <input type="text"
-                                                                           name="name"
-                                                                           class="text-center"
-                                                                           id="editName"/>
-                                                                </div>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <strong>Surname</strong>
-                                                                    <input type="text"
-                                                                           class="text-center"
-                                                                           name="surName"
-                                                                           id="editSurName"/>
-                                                                </div>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <strong>Age</strong>
-                                                                    <input type="text"
-                                                                           class="text-center"
-                                                                           name="age"
-                                                                           id="editAge"/>
-                                                                </div>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <div class="text-center">Username</div>
-                                                                    <input type="text"
-                                                                           class="text-center"
-                                                                           name="userName"
-                                                                           id="editUserName"/>
-                                                                </div>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <strong>Password</strong>
-                                                                    <input type="password"
-                                                                           class="text-center"
-                                                                           name="password"
-                                                                           id="editPassword"/>
-                                                                </div>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <div class="text-center">Is Active
-                                                                        <input
-                                                                                type="radio"
-                                                                                name="isActive"
-                                                                                value="true"/>
-                                                                    </div>
 
-                                                                    <div class="text-center">Not Active
-                                                                        <input
-                                                                                type="radio"
-                                                                                name="isActive"
-                                                                                value="false"/>
-                                                                    </div>
-                                                                </div>
-                                                                <br>
-                                                                <div class="row">
-                                                                    <strong>Role</strong>
-                                                                    <select id="editRoles" multiple
-                                                                            class="input-group-text" size="2"
-                                                                            aria-label="selectRole"
-                                                                            name="rolesEdit"
-                                                                            required>
-                                                                        <option th:each="role: ${allRoles}"
-                                                                                th:text="${role.role}"
-                                                                                th:value="${role.id}"></option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer justify-content-end">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">
-                                                                Close
-                                                            </button>
-                                                            <input type="submit" class="btn btn-info"
-                                                                   value="Edit"/>
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="modal" id="modalDelete">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <form id="deleteForm">
-                                                    <div class="modal-body">
-
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Delete user</h4>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="form-group row justify-content-center text-center">
-                                                                <div class="col-sm-6">
-                                                                    <div class="row">
-                                                                        <strong>ID</strong>
-                                                                        <input type="text"
-                                                                               class="text-center"
-                                                                               id="deleteID"
-                                                                               name="deleteID"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br/>
-                                                                    <div class="row">
-                                                                        <strong>Name</strong>
-                                                                        <input type="text"
-                                                                               class="text-center"
-                                                                               id="deleteName"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <strong>Surname</strong>
-                                                                        <input type="text"
-                                                                               class="text-center"
-                                                                               id="deleteSurname"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <strong>Age</strong>
-                                                                        <input type="text"
-                                                                               class="text-center"
-                                                                               id="deleteAge"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <strong>Username</strong>
-                                                                        <input type="text"
-                                                                               class="text-center"
-                                                                               id="deleteUserName"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <strong>Password</strong>
-                                                                        <input type="password"
-                                                                               class="text-center"
-                                                                               id="deletePassword"
-                                                                               readonly/>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <div class="text-center">Is Active <input
-                                                                                id="deleteIsActive"
-                                                                                name="isActive"
-                                                                                type="radio"
-                                                                                value="true"
-                                                                                readonly/>
-                                                                        </div>
-
-                                                                        <div class="text-center">Not Active <input
-                                                                                type="radio"
-                                                                                value="false"
-                                                                                readonly/></div>
-                                                                    </div>
-                                                                    <br>
-                                                                    <div class="row">
-                                                                        <strong>Role</strong>
-                                                                        <select id="deleteRoles" multiple
-                                                                                class="input-group-text" size="2"
-                                                                                aria-label="selectRole">
-                                                                            <option selected
-                                                                                    th:each="role: ${allRoles}"
-                                                                                    th:text="${role}"
-                                                                                    th:value="${role}"
-                                                                            ></option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer justify-content-end">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">
-                                                                    Close
-                                                                </button>
-                                                                <input type="submit" class="btn btn-danger"
-                                                                       value="Delete"/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                     </tbody>
                                 </table>
                             </div>
@@ -387,6 +179,216 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------- Модаль Edit-------------->
+<div class="modal" id="modalEdit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit user</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formEdit">
+                    <div class="form-group row justify-content-center text-center">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <strong>ID</strong>
+                                <input type="text"
+                                       class="text-center"
+                                       name="id"
+                                       id="editID"/>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <strong>Name</strong>
+                                <input type="text"
+                                       name="name"
+                                       class="text-center"
+                                       id="editName"/>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <strong>Surname</strong>
+                                <input type="text"
+                                       class="text-center"
+                                       name="surName"
+                                       id="editSurName"/>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <strong>Age</strong>
+                                <input type="text"
+                                       class="text-center"
+                                       name="age"
+                                       id="editAge"/>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="text-center">Username</div>
+                                <input type="text"
+                                       class="text-center"
+                                       name="userName"
+                                       id="editUserName"/>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <strong>Password</strong>
+                                <input type="password"
+                                       class="text-center"
+                                       name="password"
+                                       id="editPassword"/>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="text-center">Is Active
+                                    <input
+                                            type="radio"
+                                            name="isActive"
+                                            value="true"/>
+                                </div>
+
+                                <div class="text-center">Not Active
+                                    <input
+                                            type="radio"
+                                            name="isActive"
+                                            value="false"/>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <strong>Role</strong>
+                                <select id="editRoles" multiple
+                                        class="input-group-text" size="2"
+                                        aria-label="selectRole"
+                                        name="rolesEdit"
+                                        required>
+                                    <option th:each="role: ${allRoles}"
+                                            th:text="${role.role}"
+                                            th:value="${role.id}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-end">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                        <input type="submit" class="btn btn-info"
+                               value="Edit"/>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!---------- Модаль Delete-------------->
+<div class="modal" id="modalDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form id="deleteForm">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Delete user</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row justify-content-center text-center">
+                            <div class="col-sm-6">
+                                <div class="row">
+                                    <strong>ID</strong>
+                                    <input type="text"
+                                           class="text-center"
+                                           id="deleteID"
+                                           name="id"
+                                           readonly/>
+                                </div>
+                                <br/>
+                                <div class="row">
+                                    <strong>Name</strong>
+                                    <input type="text"
+                                           class="text-center"
+                                           name="name"
+                                           readonly/>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <strong>Surname</strong>
+                                    <input type="text"
+                                           class="text-center"
+                                           name="surName"
+                                           readonly/>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <strong>Age</strong>
+                                    <input type="text"
+                                           class="text-center"
+                                           name="age"
+                                           readonly/>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <strong>Username</strong>
+                                    <input type="text"
+                                           class="text-center"
+                                           name="userName"
+                                           readonly/>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <strong>Password</strong>
+                                    <input type="password"
+                                           class="text-center"
+                                           name="password"
+                                           readonly/>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="text-center">Is Active
+                                        <input
+                                                type="radio"
+                                                name="isActive"
+                                                value="true"/>
+                                    </div>
+
+                                    <div class="text-center">Not Active
+                                        <input
+                                                type="radio"
+                                                name="isActive"
+                                                value="false"/>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <strong>Role</strong>
+                                    <select id="deleteRoles" multiple
+                                            class="input-group-text" size="2"
+                                            aria-label="selectRole"
+                                            name="rolesEdit"
+                                            required>
+                                        <option th:each="role: ${allRoles}"
+                                                th:text="${role.role}"
+                                                th:value="${role.id}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-end">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+                            <input type="submit" class="btn btn-danger"
+                                   value="Delete"/>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
