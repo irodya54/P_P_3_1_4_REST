@@ -108,10 +108,13 @@ async function getUser(id) {
     return await response.json();
 }
 
-$('#modalEdit').on('shown.bs.modal', function (event) {
-    event.preventDefault()
+$('#modalEdit').on('show.bs.modal', function (event) {
+
     let userEditID = event.relatedTarget.getAttribute('data-bs-id')
     let form = document.querySelector('#formEdit')
+    form.reset()
+    let selectRole = document.getElementById('editRoles')
+    console.log(selectRole)
     let user = getUser(userEditID)
         .then(user => {
             form.idEdit.value = user.id
@@ -121,8 +124,14 @@ $('#modalEdit').on('shown.bs.modal', function (event) {
             form.password.value = user.password
             form.userName.value = user.userName
             form.isActive.value = user.active
-            form.rolesEdit.value = user.roles.id
-            console.log(user)
+
+            for (let option of selectRole.options) {
+                for (let i = 0; i < user.roles.length; i++) {
+                    if (parseInt(option.value) === user.roles[i].id) {
+                        option.selected = true
+                    }
+                }
+            }
         })
 
 
@@ -134,15 +143,13 @@ $('#modalEdit').on('shown.bs.modal', function (event) {
         let editRoles = [];
 
         for (let i = 0; i < currentRoles.length; i++) {
-            console.log(i)
             editRoles.push({
                 id: currentRoles.item(i).value,
                 name: currentRoles.item(i).text
             })
-            console.log(editRoles)
         }
         fetch("http://localhost:8080/rest/", {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -157,22 +164,15 @@ $('#modalEdit').on('shown.bs.modal', function (event) {
                 roles: editRoles
 
             })
+
+        }).then(() => {
+                $('#modalEdit').hide()
+                getAllUsers()
+            }
+        ).catch(() => {
+            $('#modalEdit').hide()
         })
-            .then(() => {
-                getAllUsers();
-                $('#modalEdit').hide();
-            })
     })
 })
 
-$('#modalDelete').on('shown.bs.modal', function (ev) {
-    ev.preventDefault()
-
-    $('#deleteForm').on('submit', function (ev) {
-        ev.preventDefault()
-        $('#modalDelete').hide()
-
-    })
-
-})
 

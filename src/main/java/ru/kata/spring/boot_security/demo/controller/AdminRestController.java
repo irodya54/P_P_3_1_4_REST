@@ -68,12 +68,12 @@ public class AdminRestController {
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
-    @PutMapping("/")
+    @PatchMapping("/")
     public ResponseEntity<User> editUser(@RequestBody User editUser) {
         final boolean edited = userService.updateUser(editUser);
 
         return edited
-                ? new ResponseEntity<>(editUser, HttpStatus.OK)
+                ? new ResponseEntity<>(HttpStatus.OK)
                 : new ResponseEntity<>(HttpStatus.NOT_MODIFIED);
     }
 
