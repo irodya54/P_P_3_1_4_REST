@@ -364,7 +364,7 @@
                     </div>
 
                     <!--- Вкладка User ------>
-                    <div class="tab-pane fade show" id="userPanel">
+                    <div class="tab-pane show" th:classappend="${user.isUser()} ? active : ''" id="userPanel">
                         <div class="p-3 border">
                             <h5 class="my-0 mx-2">User info</h5>
                         </div>

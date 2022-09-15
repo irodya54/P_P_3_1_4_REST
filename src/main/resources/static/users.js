@@ -102,18 +102,21 @@ async function getFormValue(event) {
 }
 
 // модали
+
+// Получение пользователя по ID
 async function getUser(id) {
     let url = "http://localhost:8080/rest/" + id;
     let response = await fetch(url);
     return await response.json();
 }
-
+// ИЗменение пользователя
 $('#modalEdit').on('show.bs.modal', function (event) {
 
     let userEditID = event.relatedTarget.getAttribute('data-bs-id')
     let form = document.querySelector('#formEdit')
     form.reset()
     let selectRole = document.getElementById('editRoles')
+        // Заполнение формы
     let user = getUser(userEditID)
         .then(user => {
             form.idEdit.value = user.id
@@ -131,11 +134,12 @@ $('#modalEdit').on('show.bs.modal', function (event) {
                     }
                 }
             }
-        }).catch(() => console.error('что то пошло не так'))
+        })
 
-
+        // Отправка формы
     form.addEventListener('submit', function (ev) {
         ev.preventDefault()
+        // Считывание ролей
         const userFormEditRole = document.querySelector('#editRoles')
         const currentRoles = userFormEditRole.selectedOptions
         let editRoles = [];
@@ -146,6 +150,7 @@ $('#modalEdit').on('show.bs.modal', function (event) {
                 name: currentRoles.item(i).text
             })
         }
+        // Отправка запросса на изменение
         fetch("http://localhost:8080/rest/", {
             method: 'PATCH',
             headers: {
@@ -164,7 +169,6 @@ $('#modalEdit').on('show.bs.modal', function (event) {
             })
 
         }).then(() => {
-            allUsersTable.empty()
             $("#modalEdit").modal("hide")
             getAllUsers()
         })
